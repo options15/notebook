@@ -1,0 +1,23 @@
+﻿    <h1>Список людей</h1>
+    <select attribute multiple size="8">
+        @{
+            foreach (var person in Model)
+            {
+                <option attribute value="@person.Id" > 
+                    Фамилия: @person.Surname, имя: @person.Name, Номер телефона: @person.PhoneNumber, Год рождения: @person.YearOfBirth
+                </option>
+            }
+        }
+    </select>
+<div>
+    <p><input class="button" id="DeleteButton" type="button" value="Удалить" /></p>
+    <p>Введите имя:</p>
+    <input class="InputText" id="SurnameInput" type="text" />
+    <p>Введите адрес:</p>
+    <input class="InputText" id="NameInput" type="text" />
+    <p>Введите телефонный номер:</p>
+    <input class="InputText" id="PhoneNumberInput" type="text" />
+    <p>Введите год рождения:</p>
+    <input class="InputText" id="YearOfBirthInput" type="text" />
+    <p><input class="button" id="AddButton" type="button" value="Добавить" /></p>
+</div>
