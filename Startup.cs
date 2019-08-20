@@ -38,6 +38,9 @@ namespace Notebook
                     routes.MapRoute(
                         name: "default2",
                         template: "{controller=Person}/{action=Index}/{surname?}/{name?}/{phoneNamber?}/{yearOfBirth?}");
+                    routes.MapRoute(
+                        name: "default3",
+                        template: "{controller=Person}/{action=Index}/{name?}/{surname?}/{phoneNamber?}");
                 });
             }
         }

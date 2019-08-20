@@ -37,23 +37,58 @@ namespace Notebook.Data.Mocks
             set { }
         }
 
+        public IEnumerable<Person> SortedPerson { get ; set; }
+
         public void AddPerson(Person person)
         {
-            _serialised = File.ReadAllText("AllPerson.json");
-            _personlist = JsonConvert.DeserializeObject<List<Person>>(_serialised);
+            LoadList();
             person.Id = _personlist.Max(x => x.Id)+1;
             _personlist.Add(person);
-            _serialised = JsonConvert.SerializeObject(_personlist);
-            File.WriteAllText("AllPerson.json", _serialised);
+            SaveList();
         }
 
         public void DeletePerson(int Id)
         {
+            LoadList();
+            _personlist.Remove(_personlist.Where(x => x.Id == Id).FirstOrDefault());
+            SaveList();
+        }
+
+        public void Search(string name, string surname, string phoneNumber)
+        {
+
+            LoadList();
+            if (name == null && surname == null && phoneNumber == null)
+            {
+                SortedPerson = _personlist;
+                return;
+            }
+            if(name !=null)
+            SortedPerson = _personlist.Where(x => x.Name != null && x.Name.Contains(name));
+            if (surname != null)
+            {
+                if(SortedPerson != null)
+                    SortedPerson = SortedPerson.Where(x => x.Surname != null && x.Surname.Contains(surname));
+                else
+                    SortedPerson = _personlist.Where(x => x.Surname != null && x.Surname.Contains(surname));
+            }
+            if (phoneNumber != null)
+            {
+                if (SortedPerson != null)
+                    SortedPerson = SortedPerson.Where(x => x.PhoneNumber != null && x.PhoneNumber.Contains(phoneNumber));
+                else
+                    SortedPerson = _personlist.Where(x => x.PhoneNumber != null && x.PhoneNumber.Contains(phoneNumber));
+            }
+        }
+
+        public void LoadList()
+        {
             _serialised = File.ReadAllText("AllPerson.json");
             _personlist = JsonConvert.DeserializeObject<List<Person>>(_serialised);
+        }
 
-            _personlist.Remove(_personlist.Where(x => x.Id == Id).FirstOrDefault());
-
+        public void SaveList()
+        {
             _serialised = JsonConvert.SerializeObject(_personlist);
             File.WriteAllText("AllPerson.json", _serialised);
         }
