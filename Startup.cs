@@ -29,7 +29,16 @@ namespace Notebook
                 app.UseDeveloperExceptionPage();
                 app.UseStatusCodePages();
                 app.UseStaticFiles();
-                app.UseMvcWithDefaultRoute();
+               // app.UseMvcWithDefaultRoute();
+                app.UseMvc(routes =>
+                {
+                    routes.MapRoute(
+                        name: "default",
+                        template: "{controller=Person}/{action=Index}");
+                    routes.MapRoute(
+                        name: "default2",
+                        template: "{controller=Person}/{action=Index}/{surname?}/{name?}/{phoneNamber?}/{yearOfBirth?}");
+                });
             }
         }
     }

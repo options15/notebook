@@ -9,6 +9,7 @@ namespace Notebook.Data.Interfaces
     public interface IPersons
     {
         IEnumerable<Person> AllPersons { get; set; }
-
+        void AddPerson(Person person);
+        void DeletePerson(int Id);
     }
 }

@@ -1,0 +1,55 @@
+﻿<div class="col-md-5" style="width: 25%; float:left; border:solid; border-color:grey;">
+    <h2>Enter your details</h2>
+    <form asp-controller="Person" method="post" asp-action="Create">
+        <div class="form-group">
+            <label>Name</label>
+            <div class="col-md-5">
+                <input type="text" name="name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Surname</label>
+            <div class="col-md-5">
+                <input type="text" name="surname">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Phone</label>
+            <div class="col-md-5">
+                <input type="text" name="phoneNamber">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Year of birth</label>
+            <div class="col-md-5">
+                <input type="text" name="yearOfBirth">
+            </div>
+        </div>
+        <input  class="btn btn-success" type="submit" value="Create" />
+    </form>
+</div>
+<div style="width:50%; margin-left:30%;">
+    <h1>Person List</h1>
+    <form asp-controller="Person" asp-action="Delete" method="post">
+        <table class="table">
+            <tr>
+                <th>Surname</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Year of birth</th>
+                <th></th>
+            </tr>
+            @foreach (var person in Model.AllPersons)
+            {
+                <tr>
+                    <td>@person.Surname</td>
+                    <td>@person.Name</td>
+                    <td>@person.PhoneNumber</td>
+                    <td>@person.YearOfBirth</td>
+                    <td><input class="btn btn-danger" type="submit" asp-route-id="@person.Id" value="Delete" /> </td>
+                </tr>
+            }
+
+        </table>
+    </form>
+</div>
