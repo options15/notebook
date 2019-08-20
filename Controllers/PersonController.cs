@@ -37,6 +37,12 @@ namespace Notebook.Controllers
         public ViewResult Index(string name, string surname, string phoneNamber)
         {
             _persons.Search(name, surname, phoneNamber);
+            return View(_persons.FoundPerson);
+        }
+        [Route("Person/Sort")]
+        public ViewResult Index(string sortValue)
+        {
+            _persons.SortPerson(sortValue);
             return View(_persons.SortedPerson);
         }
     }

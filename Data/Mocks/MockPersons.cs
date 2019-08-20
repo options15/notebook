@@ -37,7 +37,8 @@ namespace Notebook.Data.Mocks
             set { }
         }
 
-        public IEnumerable<Person> SortedPerson { get ; set; }
+        public IEnumerable<Person> FoundPerson { get ; set; }
+        public IEnumerable<Person> SortedPerson { get; set; }
 
         public void AddPerson(Person person)
         {
@@ -60,24 +61,24 @@ namespace Notebook.Data.Mocks
             LoadList();
             if (name == null && surname == null && phoneNumber == null)
             {
-                SortedPerson = _personlist;
+                FoundPerson = _personlist;
                 return;
             }
             if(name !=null)
-            SortedPerson = _personlist.Where(x => x.Name != null && x.Name.Contains(name));
+            FoundPerson = _personlist.Where(x => x.Name != null && x.Name.Contains(name));
             if (surname != null)
             {
-                if(SortedPerson != null)
-                    SortedPerson = SortedPerson.Where(x => x.Surname != null && x.Surname.Contains(surname));
+                if(FoundPerson != null)
+                    FoundPerson = FoundPerson.Where(x => x.Surname != null && x.Surname.Contains(surname));
                 else
-                    SortedPerson = _personlist.Where(x => x.Surname != null && x.Surname.Contains(surname));
+                    FoundPerson = _personlist.Where(x => x.Surname != null && x.Surname.Contains(surname));
             }
             if (phoneNumber != null)
             {
-                if (SortedPerson != null)
-                    SortedPerson = SortedPerson.Where(x => x.PhoneNumber != null && x.PhoneNumber.Contains(phoneNumber));
+                if (FoundPerson != null)
+                    FoundPerson = FoundPerson.Where(x => x.PhoneNumber != null && x.PhoneNumber.Contains(phoneNumber));
                 else
-                    SortedPerson = _personlist.Where(x => x.PhoneNumber != null && x.PhoneNumber.Contains(phoneNumber));
+                    FoundPerson = _personlist.Where(x => x.PhoneNumber != null && x.PhoneNumber.Contains(phoneNumber));
             }
         }
 
@@ -91,6 +92,21 @@ namespace Notebook.Data.Mocks
         {
             _serialised = JsonConvert.SerializeObject(_personlist);
             File.WriteAllText("AllPerson.json", _serialised);
+        }
+
+        public void SortPerson(string sortValue)
+        {
+            switch (sortValue)
+            {
+                case "Surname":
+                    SortedPerson = AllPersons.OrderBy(x => x.Surname);
+                    return;
+                case "Year":
+                    SortedPerson = AllPersons.OrderBy(x => x.YearOfBirth);
+                    return;
+                default:
+                    return;
+            }
         }
     }
 }

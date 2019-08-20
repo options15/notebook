@@ -50,10 +50,10 @@
     <form asp-controller="Person" asp-action="Delete" method="post">
         <table class="table">
             <tr>
-                <th>Surname</th>
+                <th>@Html.ActionLink("Surname", "Sort", "Person", new { sortValue = "Surname"})</th>
                 <th>Name</th>
                 <th>Phone</th>
-                <th>Year of birth</th>
+                <th>@Html.ActionLink("Year of birth", "Sort", "Person",  new { sortValue = "Year"})</th>
                 <th></th>
             </tr>
             @foreach (var person in Model)
