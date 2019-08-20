@@ -5,24 +5,28 @@
             <label>Name</label>
             <div class="col-md-5">
                 <input type="text" name="name">
+                <span class="text-danger">@ViewBag.NotValid.Name</span>
             </div>
         </div>
         <div class="form-group">
             <label>Surname</label>
             <div class="col-md-5">
                 <input type="text" name="surname">
+                <span class="text-danger">@ViewBag.NotValid.Surname</span>
             </div>
         </div>
         <div class="form-group">
             <label>Phone</label>
             <div class="col-md-5">
                 <input type="text" name="phoneNamber">
+                <span class="text-danger">@ViewBag.NotValid.PhoneNumber</span>
             </div>
         </div>
         <div class="form-group">
             <label>Year of birth</label>
             <div class="col-md-5">
                 <input type="text" name="yearOfBirth">
+                <span class="text-danger">@ViewBag.NotValid.YearOfBirth</span>
             </div>
         </div>
         <input class="btn btn-success" type="submit" value="Create" />
