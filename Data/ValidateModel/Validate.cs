@@ -7,24 +7,32 @@ namespace Notebook.Data.ValidateModel
 {
     public class Validate
     {
-        public bool valid { get; set; }
+        // Boolean whether there is an error in the input data.If it is true - then there are no errors.
+        public bool Valid { get; set; }
+
+        // Error fields - first name, last name, phone number, and date of birth
         public string Surname{ get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
         public string YearOfBirth { get; set; }
 
+        // Constant expressions for errors.
         const string NVName = "Please enter a valid name";
         const string NVSurname = "Please enter a valid surname";
         const string NVPhone = "Please enter a valid phone number";
         const string NVYear = "Please enter a valid year";
+
+        // The constructor sets the default value.
         public Validate()
         {
-            valid = false;
+            Valid = false;
             Surname = "";
             Name = "";
             PhoneNumber = "";
             YearOfBirth = "";
         }
+
+        // Runs a number of methods to verify the entered data. Sets true if all methods return true.
         public void ValidatePerson(string surname, string name, string phoneNumber, int yearOfBirth)
         {
             if (!CheckNameAndSurname(surname))
@@ -37,14 +45,15 @@ namespace Notebook.Data.ValidateModel
             { YearOfBirth = NVYear; }
             if (CheckNameAndSurname(surname) && CheckNameAndSurname(name) && ChecPhoneNumber(phoneNumber) && CheckYearOfBirth(yearOfBirth))
             {
-                valid = true;
+                Valid = true;
             }
             else
             {
-                valid = false;
+                Valid = false;
             }
         }
 
+        // Checks if the phone number contains only digits.Returns false if it contains something other than digits.
         private bool ChecPhoneNumber(string phoneNumber)
         {
             if (phoneNumber == null)
@@ -57,6 +66,7 @@ namespace Notebook.Data.ValidateModel
             return true;
         }
 
+        //Checks the year of birth.Returns true if the number is greater than 1900 and less than 2010.
         private bool CheckYearOfBirth(int yearOfBirth)
         {
             if (yearOfBirth < 1900 || yearOfBirth > 2010)
@@ -64,13 +74,14 @@ namespace Notebook.Data.ValidateModel
             return true;
         }
 
+        // Checks first and last name to see if it only contains letters.returns rights if it contains only letters.
         private bool CheckNameAndSurname(string str)
         {
             if (str == null)
                 return false;
             for (int i = 0; i < str.Length; i++)
             {
-                if (char.IsDigit(str[i]))
+                if (!char.IsLetter(str[i]))
                     return false;
             }
                 return true;
