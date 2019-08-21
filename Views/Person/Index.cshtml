@@ -33,22 +33,22 @@
     </form>
 </div>
 <div style="width:50%; margin-left:30%;">
-    <div class="container">
+    <div class="container" >
         <h1>Person List</h1>
-        <form asp-controller="Person" asp-action="Search" method="post">
+        <form asp-controller="Person" asp-action="Search" method="post" class="form-inline">
             <div float:left;>
                 <label>Name</label>
-                <input type="text" name="name">
+                <input type="text" name="name" >
             </div>
-            <div float:left;>
+            <div float:left; class="pl-sm-3">
                 <label>Surname</label>
                 <input type="text" name="surname">
             </div>
-            <div float:left;>
+            <div float:left; class="pl-sm-3" >
                 <label>Phone</label>
                 <input type="text" name="phoneNamber">
             </div>
-            <input class="btn btn-primary" type="submit"  value="Search" />
+           <div class="pl-sm-3"> <input class="btn btn-primary" type="submit"  value="Search" /></div>
         </form>
     </div>
     <form asp-controller="Person" asp-action="Delete" method="post">
