@@ -30,8 +30,9 @@ namespace Notebook.Controllers
             Validate val = new Validate();
             val.ValidatePerson(surname, name, phoneNamber, yearOfBirth);
             if (val.valid)
+            {
                 _persons.AddPerson(new Person(surname, name, phoneNamber, yearOfBirth));
-            else
+            }
                 ViewBag.NotValid = val;
             return View(_persons.AllPersons);
         }

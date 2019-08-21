@@ -7,16 +7,16 @@ namespace Notebook.Data.ValidateModel
 {
     public class Validate
     {
-        public bool valid;
+        public bool valid { get; set; }
         public string Surname{ get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
         public string YearOfBirth { get; set; }
 
-        string NVName = "Please enter a valid name";
-        string NVSurname = "Please enter a valid surname";
-        string NVPhone = "Please enter a valid phone number";
-        string NVYear = "Please enter a valid year";
+        const string NVName = "Please enter a valid name";
+        const string NVSurname = "Please enter a valid surname";
+        const string NVPhone = "Please enter a valid phone number";
+        const string NVYear = "Please enter a valid year";
         public Validate()
         {
             valid = false;
@@ -59,7 +59,7 @@ namespace Notebook.Data.ValidateModel
 
         private bool CheckYearOfBirth(int yearOfBirth)
         {
-            if (yearOfBirth < 1900 && yearOfBirth > 2010)
+            if (yearOfBirth < 1900 || yearOfBirth > 2010)
                 return false;
             return true;
         }
