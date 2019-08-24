@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sites_Notebook20190824123504_name": {
+            "value": null
+        },
+        "serverfarms_Notebook20190824123504Plan_externalid": {
+            "value": null
+        }
+    }
+}
