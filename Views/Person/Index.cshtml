@@ -1,76 +1,78 @@
-﻿<div class="col-md-5" style="width: 25%; float:left; border:solid; border-color:grey;">
-    <h2>Enter your details</h2>
-    <form asp-controller="Person" method="post" asp-action="Create">
-        <div class="form-group">
-            <label>Name</label>
-            <div class="col-md-5">
-                <input type="text" name="name">
-                <span class="text-danger">@ViewBag.NotValid.Name</span>
-            </div>
+﻿<div class="container-fluid row pl-sm-4">
+        <div class="container col-md-4">
+            <h2>Enter your details</h2>
+            <form asp-controller="Person" method="post" asp-action="Create">
+                <div class="form-group">
+                    <label>Name</label>
+                    <div class="col-md-5">
+                        <input type="text" name="name">
+                        <span class="text-danger">@ViewBag.NotValid.Name</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Surname</label>
+                    <div class="col-md-5">
+                        <input type="text" name="surname">
+                        <span class="text-danger">@ViewBag.NotValid.Surname</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <div class="col-md-5">
+                        <input type="text" name="phoneNamber">
+                        <span class="text-danger">@ViewBag.NotValid.PhoneNumber</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Year of birth</label>
+                    <div class="col-md-5">
+                        <input type="text" name="yearOfBirth">
+                        <span class="text-danger">@ViewBag.NotValid.YearOfBirth</span>
+                    </div>
+                </div>
+                <input class="btn btn-success" type="submit" value="Create" />
+            </form>
         </div>
-        <div class="form-group">
-            <label>Surname</label>
-            <div class="col-md-5">
-                <input type="text" name="surname">
-                <span class="text-danger">@ViewBag.NotValid.Surname</span>
+        <div class="container col-md-8">
+            <div class="container">
+                <h1>Person List</h1>
+                <form asp-controller="Person" asp-action="Search" method="post" class="form-inline">
+                    <div float:left;>
+                        <label>Name</label>
+                        <input type="text" name="name">
+                    </div>
+                    <div float:left; class="pl-sm-3">
+                        <label>Surname</label>
+                        <input type="text" name="surname">
+                    </div>
+                    <div float:left; class="pl-sm-3">
+                        <label>Phone</label>
+                        <input type="text" name="phoneNamber">
+                    </div>
+                    <div class="pl-sm-3"> <input class="btn btn-primary" type="submit" value="Search" /></div>
+                </form>
             </div>
-        </div>
-        <div class="form-group">
-            <label>Phone</label>
-            <div class="col-md-5">
-                <input type="text" name="phoneNamber">
-                <span class="text-danger">@ViewBag.NotValid.PhoneNumber</span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Year of birth</label>
-            <div class="col-md-5">
-                <input type="text" name="yearOfBirth">
-                <span class="text-danger">@ViewBag.NotValid.YearOfBirth</span>
-            </div>
-        </div>
-        <input class="btn btn-success" type="submit" value="Create" />
-    </form>
-</div>
-<div style="width:50%; margin-left:30%;">
-    <div class="container" >
-        <h1>Person List</h1>
-        <form asp-controller="Person" asp-action="Search" method="post" class="form-inline">
-            <div float:left;>
-                <label>Name</label>
-                <input type="text" name="name" >
-            </div>
-            <div float:left; class="pl-sm-3">
-                <label>Surname</label>
-                <input type="text" name="surname">
-            </div>
-            <div float:left; class="pl-sm-3" >
-                <label>Phone</label>
-                <input type="text" name="phoneNamber">
-            </div>
-           <div class="pl-sm-3"> <input class="btn btn-primary" type="submit"  value="Search" /></div>
-        </form>
-    </div>
-    <form asp-controller="Person" asp-action="Delete" method="post">
-        <table class="table">
-            <tr>
-                <th>@Html.ActionLink("Surname", "Sort", "Person", new { sortValue = "Surname"})</th>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>@Html.ActionLink("Year of birth", "Sort", "Person",  new { sortValue = "Year"})</th>
-                <th></th>
-            </tr>
-            @foreach (var person in Model)
-            {
-                <tr>
-                    <td>@person.Surname</td>
-                    <td>@person.Name</td>
-                    <td>@person.PhoneNumber</td>
-                    <td>@person.YearOfBirth</td>
-                    <td><input class="btn btn-danger" type="submit" asp-route-id="@person.Id" value="Delete" /> </td>
-                </tr>
-            }
+            <form asp-controller="Person" asp-action="Delete" method="post">
+                <table class="table">
+                    <tr>
+                        <th>@Html.ActionLink("Surname", "Sort", "Person", new { sortValue = "Surname" })</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>@Html.ActionLink("Year of birth", "Sort", "Person", new { sortValue = "Year" })</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var person in Model)
+                    {
+                        <tr>
+                            <td>@person.Surname</td>
+                            <td>@person.Name</td>
+                            <td>@person.PhoneNumber</td>
+                            <td>@person.YearOfBirth</td>
+                            <td><input class="btn btn-danger" type="submit" asp-route-id="@person.Id" value="Delete" /> </td>
+                        </tr>
+                    }
 
-        </table>
-    </form>
-</div>
+                </table>
+            </form>
+        </div>
+    </div>

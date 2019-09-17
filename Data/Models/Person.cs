@@ -9,7 +9,7 @@ namespace Notebook.Data.Models
     public class Person
     {
         // List of person model fields. Contains Id, Surname, Name, Phone number and Year Of Birth.
-        public int Id { get; set; }
+        public int Id { get;}
         public string Surname {get; set;}
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
