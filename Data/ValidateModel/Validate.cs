@@ -69,9 +69,7 @@ namespace Notebook.Data.ValidateModel
         //Checks the year of birth.Returns true if the number is greater than 1900 and less than 2010.
         private bool CheckYearOfBirth(int yearOfBirth)
         {
-            if (yearOfBirth < 1900 || yearOfBirth > 2010)
-                return false;
-            return true;
+            return (yearOfBirth > 1900 && yearOfBirth < 2010);
         }
 
         // Checks first and last name to see if it only contains letters.returns rights if it contains only letters.
@@ -81,7 +79,7 @@ namespace Notebook.Data.ValidateModel
                 return false;
             for (int i = 0; i < str.Length; i++)
             {
-                if (!char.IsLetter(str[i]))
+                if (!char.IsLetter(str[i]) && !(str[i] == '-'))
                     return false;
             }
                 return true;

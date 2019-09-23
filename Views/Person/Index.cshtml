@@ -3,32 +3,24 @@
             <h2>Enter your details</h2>
             <form asp-controller="Person" method="post" asp-action="Create">
                 <div class="form-group">
-                    <label>Name</label>
-                    <div class="col-md-5">
-                        <input type="text" name="name">
-                        <span class="text-danger">@ViewBag.NotValid.Name</span>
-                    </div>
+                    <label>Name</label><br />
+                        <input type="text" name="name"><br />
+                        <span class="text-danger">@Model.val.Name</span>
                 </div>
                 <div class="form-group">
-                    <label>Surname</label>
-                    <div class="col-md-5">
-                        <input type="text" name="surname">
-                        <span class="text-danger">@ViewBag.NotValid.Surname</span>
-                    </div>
+                    <label>Surname</label><br />
+                    <input type="text" name="surname"><br />
+                    <span class="text-danger">@Model.val.Surname</span>
                 </div>
                 <div class="form-group">
-                    <label>Phone</label>
-                    <div class="col-md-5">
-                        <input type="text" name="phoneNamber">
-                        <span class="text-danger">@ViewBag.NotValid.PhoneNumber</span>
-                    </div>
+                    <label>Phone</label><br />
+                    <input type="text" name="phoneNumber"><br />
+                    <span class="text-danger">@Model.val.PhoneNumber</span>
                 </div>
                 <div class="form-group">
-                    <label>Year of birth</label>
-                    <div class="col-md-5">
-                        <input type="text" name="yearOfBirth">
-                        <span class="text-danger">@ViewBag.NotValid.YearOfBirth</span>
-                    </div>
+                    <label>Year of birth</label><br />
+                    <input type="text" name="yearOfBirth"><br />
+                    <span class="text-danger">@Model.val.YearOfBirth</span>
                 </div>
                 <input class="btn btn-success" type="submit" value="Create" />
             </form>
@@ -61,7 +53,7 @@
                         <th>@Html.ActionLink("Year of birth", "Sort", "Person", new { sortValue = "Year" })</th>
                         <th></th>
                     </tr>
-                    @foreach (var person in Model)
+                    @foreach (var person in Model.PersonModel)
                     {
                         <tr>
                             <td>@person.Surname</td>

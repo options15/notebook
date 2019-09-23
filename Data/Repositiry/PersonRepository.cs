@@ -17,8 +17,6 @@ namespace Notebook.Data.Repositiry
         }
 
         public IEnumerable<Person> AllPersons => appDbContext.Person;
-        public IEnumerable<Person> FoundPerson { get; set; }
-        public IEnumerable<Person> SortedPerson { get; set; }
 
         public void AddPerson(Person person)
         {
@@ -36,43 +34,39 @@ namespace Notebook.Data.Repositiry
             }
         }
 
-        public void Search(string name, string surname, string phoneNumber)
+        public IEnumerable<Person> Search(string name, string surname, string phoneNumber)
         {
+            IEnumerable<Person> FoundPerson = appDbContext.Person;
             if (name == null && surname == null && phoneNumber == null)
             {
-                FoundPerson = appDbContext.Person;
-                return;
+                return FoundPerson;
             }
             if (name != null)
+            {
                 FoundPerson = appDbContext.Person.Where(x => x.Name != null && x.Name.Contains(name));
+            }
             if (surname != null)
             {
-                if (FoundPerson != null)
                     FoundPerson = FoundPerson.Where(x => x.Surname != null && x.Surname.Contains(surname));
-                else
-                    FoundPerson = appDbContext.Person.Where(x => x.Surname != null && x.Surname.Contains(surname));
             }
             if (phoneNumber != null)
             {
-                if (FoundPerson != null)
                     FoundPerson = FoundPerson.Where(x => x.PhoneNumber != null && x.PhoneNumber.Contains(phoneNumber));
-                else
-                    FoundPerson = appDbContext.Person.Where(x => x.PhoneNumber != null && x.PhoneNumber.Contains(phoneNumber));
             }
+            return FoundPerson;
         }
 
-        public void SortPerson(string sortValue)
+        public IEnumerable<Person> SortPerson(string sortValue)
         {
+            IEnumerable<Person> SortedPerson;
             switch (sortValue)
             {
                 case "Surname":
-                    SortedPerson = AllPersons.OrderBy(x => x.Surname);
-                    return;
+                   return SortedPerson = AllPersons.OrderBy(x => x.Surname);
                 case "Year":
-                    SortedPerson = AllPersons.OrderBy(x => x.YearOfBirth);
-                    return;
+                    return SortedPerson = AllPersons.OrderBy(x => x.YearOfBirth);
                 default:
-                    return;
+                    return AllPersons;
             }
         }
     }
